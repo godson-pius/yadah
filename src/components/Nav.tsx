@@ -1,0 +1,85 @@
+"use client";
+import React from "react";
+import Link from "next/link";
+import { HiMenuAlt3 } from "react-icons/hi";
+import { RiMenuUnfoldLine } from "react-icons/ri";
+
+interface IProps {
+  page?: string;
+  setPage?: (page: string) => void;
+}
+
+const Navbar = ({ page, setPage }: IProps) => {
+  const [showMobile, setShowMobile] = React.useState<boolean>(false);
+  return (
+    <>
+      <div
+        className={
+          "w-full px-10 py-4 bg-white flex justify-between items-center relative"
+        }
+      >
+        {/*<Image src={logo} alt={'logo'} width={140} height={140} />*/}
+        <Link href={"/"} className={`${showMobile ? "hidden" : "block"}`}>
+          <img src={"/next.svg"} alt="Logo" width={100} />
+        </Link>
+        <nav
+          className={`gap-5 text-xs font-medium items-center ${showMobile ? "flex" : "hidden lg:flex"}`}
+        >
+          <Link
+            href={"#"}
+            className={`group relative overflow-hidden pb-1 ${page === "how" ? "border-b-2" : null}`}
+          >
+            HOME
+            <p
+              className={
+                "border-b-orange-500 border-b-2 w-full h-full absolute inset-0 transform transition-all -translate-x-full group-hover:translate-x-0 duration-500"
+              }
+            ></p>
+          </Link>
+
+          <Link
+            href={"#"}
+            className={`group relative overflow-hidden pb-1 ${page === "how" ? "border-b-2" : null}`}
+          >
+            ABOUT YADAH
+            <p
+              className={
+                "border-b-orange-500 border-b-2 w-full h-full absolute inset-0 transform transition-all -translate-x-full group-hover:translate-x-0 duration-500"
+              }
+            ></p>
+          </Link>
+
+          {/*<Link href={''} className={`group relative overflow-hidden pb-1 ${page === 'contact' ? 'border-b-2' : null}`}>*/}
+          {/*    CONTACT*/}
+          {/*    <p className={'border-b-orange-500 border-b-2 w-full h-full absolute inset-0 transform transition-all -translate-x-full group-hover:translate-x-0 duration-500'}></p>*/}
+          {/*</Link>*/}
+
+          <Link
+            href={"/signup"}
+            className={`bg-orange-500 px-10 py-3 text-orange-100 rounded-full text-sm font-bold border-2 shadow mb-1 ${showMobile ? "hidden" : null}`}
+          >
+            Register
+          </Link>
+
+          <RiMenuUnfoldLine
+            size={25}
+            className={
+              "absolute right-10 block lg:hidden cursor-pointer text-red-500 "
+            }
+            onClick={() => setShowMobile(!showMobile)}
+          />
+        </nav>
+
+        {/*    Mobile*/}
+        <HiMenuAlt3
+          size={25}
+          onClick={() => setShowMobile(true)}
+          className={`${showMobile ? "hidden" : "block"} block lg:hidden cursor-pointer`}
+        />
+      </div>
+      {/*<hr className="text-gray-300 mb-" />*/}
+    </>
+  );
+};
+
+export default Navbar;
