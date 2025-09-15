@@ -50,7 +50,7 @@ const Hero = () => {
 
         <div
           className={
-            'flex flex-col w-full justify-end lg:justify-start lg:w-[45%] h-96 lg:h-full text-[#2C3E50] bg-[url("https://images.unsplash.com/photo-1496307653780-42ee777d4833?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHdoaXRlJTIwYWJzdHJhY3QlMjBiYWNrZ3JvdW5kfGVufDB8fDB8fHww")] bg-cover bg-center p-7 pt-60 lg:pt-7 group relative overflow-hidden'
+            'flex flex-col w-full justify-end lg:justify-start lg:w-[45%] h-96 lg:h-full text-[#2C3E50] bg-[url("https://images.unsplash.com/photo-1496307653780-42ee777d4833?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHdoaXRlJTIwYWJzdHJhY3QlMjBiYWNrZ3JvdW5kfGVufDB8fDB8fHww")] bg-cover bg-center p-7 pt-96 lg:pt-7 group relative overflow-hidden'
           }
         >
           <p className={`${animation2}`}>

@@ -1,12 +1,6 @@
 import type { Metadata } from "next";
-import { Rubik, Onest } from "next/font/google";
+import { Onest } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Nav";
-
-const rubik = Rubik({
-  variable: "--font-rubik",
-  subsets: ["latin"],
-});
 
 const onest = Onest({
   variable: "--font-onest",
@@ -43,7 +37,7 @@ export const metadata: Metadata = {
     locale: "en_NG",
     images: [
       {
-        url: "",
+        url: "https://yadahconcert.vercel.app",
         width: 1200,
         height: 630,
         alt: "Yadah Mega Concert",
