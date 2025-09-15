@@ -20,7 +20,10 @@ const Navbar = ({ page, setPage }: IProps) => {
       >
         {/*<Image src={logo} alt={'logo'} width={140} height={140} />*/}
         <Link href={"/"} className={`${showMobile ? "hidden" : "block"}`}>
-          <img src={"/next.svg"} alt="Logo" width={100} />
+          <span className="font-bold text-lg italic">
+            <span className="text-orange-600">Yadah</span>Concert.
+          </span>
+          {/*<img src={"/next.svg"} alt="Logo" width={100} />*/}
         </Link>
         <nav
           className={`gap-5 text-xs font-medium items-center ${showMobile ? "flex" : "hidden lg:flex"}`}
@@ -38,10 +41,22 @@ const Navbar = ({ page, setPage }: IProps) => {
           </Link>
 
           <Link
-            href={"#"}
+            href={"/about-yadah"}
             className={`group relative overflow-hidden pb-1 ${page === "how" ? "border-b-2" : null}`}
           >
             ABOUT YADAH
+            <p
+              className={
+                "border-b-orange-500 border-b-2 w-full h-full absolute inset-0 transform transition-all -translate-x-full group-hover:translate-x-0 duration-500"
+              }
+            ></p>
+          </Link>
+
+          <Link
+            href={"/memories"}
+            className={`group relative overflow-hidden pb-1 ${page === "how" ? "border-b-2" : null}`}
+          >
+            YADAH MEMORIES
             <p
               className={
                 "border-b-orange-500 border-b-2 w-full h-full absolute inset-0 transform transition-all -translate-x-full group-hover:translate-x-0 duration-500"
@@ -56,7 +71,7 @@ const Navbar = ({ page, setPage }: IProps) => {
 
           <Link
             href={"/signup"}
-            className={`bg-orange-500 px-10 py-3 text-orange-100 rounded-full text-sm font-bold border-2 shadow mb-1 ${showMobile ? "hidden" : null}`}
+            className={`bg-[#121d25] glass px-16 py-3 text-orange-50 rounded-full text-sm font-bold border-2 shadow mb-1 ${showMobile ? "hidden" : null}`}
           >
             Register
           </Link>
