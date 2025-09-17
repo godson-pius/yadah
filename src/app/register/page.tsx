@@ -89,7 +89,7 @@ export default function Register() {
               <p style="margin:0;">
                 Follow us on socials:
                 <a href="https://web.facebook.com/profile.php?id=61580494344252" style="color:#0284c7; text-decoration:none; margin-left:6px;">Facebook</a> ·
-                <a href="" style="color:#0284c7; text-decoration:none; margin-left:6px;">Instagram</a> ·
+                <a href="https://www.instagram.com/yadahmegaconcert?igsh=ZTVwZHhwbWt6aWUz&utm_source=qr" style="color:#0284c7; text-decoration:none; margin-left:6px;">Instagram</a> ·
                 <a href="https://www.tiktok.com/@inspired.music.na?_t=ZG-8znskMbnsqf&_r=1" style="color:#0284c7; text-decoration:none; margin-left:6px;">TikTok</a>
               </p>
               <p style="margin-top:8px;">— The Yadah MEGA Concert Team</p>

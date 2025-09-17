@@ -428,7 +428,7 @@ export default function AdminDashboard() {
           </div>
 
           {/* Email Panel */}
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-1 text-sm">
             <div className="bg-white rounded-lg shadow-sm p-6">
               <h2 className="text-xl font-semibold text-gray-900 mb-4">
                 Send Email
@@ -496,8 +496,8 @@ export default function AdminDashboard() {
                   )}
                 </button>
 
-                <div className="text-xs text-gray-500 mt-2">
-                  💡 This is a demo - emails are logged to console
+                <div className="text-xs text-gray-500 mt-2 animate-pulse">
+                  💡 Yadah Mega Concert 2025
                 </div>
               </div>
             </div>
