@@ -54,9 +54,10 @@ const Hero = () => {
           }
         >
           <p className={`${animation2}`}>
-            <h1 className="font-bold text-2xl mb-2">
+            <span className="font-bold text-2xl mb-2">
               Yadah Mega Concert - Halal
-            </h1>
+            </span>{" "}
+            <br />
             The Yadah MEGA Concert is more than just an event; it is a divine
             gathering, a spiritual encounter where hearts unite to glorify God,
             burdens are lifted, and joy overflows. With the theme “Halal”, this
@@ -70,9 +71,9 @@ const Hero = () => {
               </i>{" "}
             </b>
             <Link
-              href="/signup"
+              href="/register"
               className={
-                "text-orange-500 pb-1 border-b-[1px] w-max mt-4 font-medium flex items-center gap-1"
+                "border-orange-500 pb-1 border-b-[1px] w-max mt-4 font-medium flex items-center gap-1"
               }
             >
               Register

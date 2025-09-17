@@ -29,7 +29,7 @@ const Navbar = ({ page, setPage }: IProps) => {
           className={`gap-5 text-xs font-medium items-center ${showMobile ? "flex" : "hidden lg:flex"}`}
         >
           <Link
-            href={"#"}
+            href={"/"}
             className={`group relative overflow-hidden pb-1 ${page === "how" ? "border-b-2" : null}`}
           >
             HOME
@@ -70,7 +70,7 @@ const Navbar = ({ page, setPage }: IProps) => {
           {/*</Link>*/}
 
           <Link
-            href={"/signup"}
+            href={"/register"}
             className={`bg-[#121d25] glass px-16 py-3 text-orange-50 rounded-full text-sm font-bold border-2 shadow mb-1 ${showMobile ? "hidden" : null}`}
           >
             Register

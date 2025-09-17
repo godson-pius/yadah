@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Onest } from "next/font/google";
 import "./globals.css";
+import { ConvexClientProvider } from "../providers/ConvexClientProvider";
 
 const onest = Onest({
   variable: "--font-onest",
@@ -53,7 +54,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${onest.className} antialiased`}>{children}</body>
+      <body className={`${onest.className} antialiased`}>
+        <ConvexClientProvider>{children}</ConvexClientProvider>
+      </body>
     </html>
   );
 }
