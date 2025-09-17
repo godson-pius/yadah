@@ -137,7 +137,7 @@ export default function Register() {
                 name="name"
                 required
                 placeholder="Enter your name"
-                className="bg-gray-100 border-[1.5px] border-gray-200 rounded-lg text-sm px-3 py-2 w-full lg:w-96"
+                className="bg-gray-100 border-[1.5px] border-gray-200 text-base rounded-lg placeholder:text-sm px-3 py-2 w-full lg:w-96"
               />
             </div>
 
@@ -151,7 +151,7 @@ export default function Register() {
                 name="email"
                 required
                 placeholder="Enter your email"
-                className="bg-gray-100 border-[1.5px] border-gray-200 rounded-lg text-sm px-3 py-2 w-full lg:w-96"
+                className="bg-gray-100 border-[1.5px] border-gray-200 text-base rounded-lg placeholder:text-sm px-3 py-2 w-full lg:w-96"
               />
             </div>
 
@@ -165,7 +165,7 @@ export default function Register() {
                 name="phone"
                 required
                 placeholder="Enter your phone number"
-                className="bg-gray-100 border-[1.5px] border-gray-200 rounded-lg text-sm px-3 py-2 w-full lg:w-96"
+                className="bg-gray-100 border-[1.5px] border-gray-200 text-base rounded-lg placeholder:text-sm px-3 py-2 w-full lg:w-96"
               />
             </div>
 
@@ -179,7 +179,7 @@ export default function Register() {
                 name="church"
                 required
                 placeholder="Enter your church"
-                className="bg-gray-100 border-[1.5px] border-gray-200 rounded-lg text-sm px-3 py-2 w-full lg:w-96"
+                className="bg-gray-100 border-[1.5px] border-gray-200 text-base rounded-lg placeholder:text-sm px-3 py-2 w-full lg:w-96"
               />
             </div>
             <div className="flex items-center mt-2 gap-3">
