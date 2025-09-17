@@ -4,7 +4,6 @@ import Link from "next/link";
 import { api } from "../../../convex/_generated/api";
 import { useState } from "react";
 import { FiLoader } from "react-icons/fi";
-import { POST } from "../api/send-email/route";
 
 export default function Register() {
   const insertUser = useMutation(api.users.insertUser);
@@ -14,7 +13,9 @@ export default function Register() {
 
   const handleSubmit = async (formData: FormData) => {
     // const data = Object.fromEntries(formData.entries());
-    localStorage.setItem("name", formData.get("name") as string);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("name", formData.get("name") as string);
+    }
 
     setTimeout(() => {
       setLoading("top-3 lg:top-5 -translate-y-0");
