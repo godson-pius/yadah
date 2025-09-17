@@ -11,6 +11,7 @@ export default function Register() {
   const [submitting, setSubmitting] = useState<boolean>(false);
   const [loading, setLoading] = useState<string>("-translate-y-full top-0");
   const [user, setUser] = useState<string>("");
+  const url = "https://yadahconcert.vercel.app";
 
   const handleSubmit = async (formData: FormData) => {
     // const data = Object.fromEntries(formData.entries());
@@ -106,7 +107,7 @@ export default function Register() {
       setLoading("-translate-y-full top-0");
 
       // Send email
-      await fetch("http://localhost:3000/api/send-email", {
+      await fetch(`${url}/api/send-email`, {
         method: "POST",
         body: JSON.stringify(mailData),
       });
