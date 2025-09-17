@@ -148,15 +148,15 @@ export default function AdminDashboard() {
   const handleSelectAll = () => {
     const filteredUsers = getFilteredUsers();
     const allSelected = filteredUsers.every((user) =>
-      selectedUsers.includes(user.id),
+      selectedUsers.includes(user._id),
     );
 
     if (allSelected) {
       setSelectedUsers((prev) =>
-        prev.filter((id) => !filteredUsers.some((user) => user.id === id)),
+        prev.filter((id) => !filteredUsers.some((user) => user._id === id)),
       );
     } else {
-      const newSelections = filteredUsers.map((user) => user.id);
+      const newSelections = filteredUsers.map((user) => user._id);
       setSelectedUsers((prev) => [...new Set([...prev, ...newSelections])]);
     }
   };
@@ -183,7 +183,7 @@ export default function AdminDashboard() {
 
       // Simulate success
       const targetUserEmails = users
-        .filter((user) => targetUsers.includes(user.id))
+        .filter((user) => targetUsers.includes(user._id))
         .map((user) => user.email);
 
       console.log("📧 Email sent simulation:", {
@@ -396,7 +396,7 @@ export default function AdminDashboard() {
                       checked={
                         getFilteredUsers().length > 0 &&
                         getFilteredUsers().every((user) =>
-                          selectedUsers.includes(user.id),
+                          selectedUsers.includes(user._id),
                         )
                       }
                       onChange={handleSelectAll}
@@ -565,7 +565,7 @@ export default function AdminDashboard() {
                     <div className="text-xs text-gray-500">
                       Recipients:{" "}
                       {users
-                        .filter((user) => selectedUsers.includes(user.id))
+                        .filter((user) => selectedUsers.includes(user._id))
                         .map((user) => user.email)
                         .join(", ")}
                     </div>
