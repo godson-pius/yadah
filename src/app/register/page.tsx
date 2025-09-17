@@ -10,12 +10,11 @@ export default function Register() {
   const [anim, setAnim] = useState<string>("-translate-y-full top-0");
   const [submitting, setSubmitting] = useState<boolean>(false);
   const [loading, setLoading] = useState<string>("-translate-y-full top-0");
+  const [user, setUser] = useState<string>("");
 
   const handleSubmit = async (formData: FormData) => {
     // const data = Object.fromEntries(formData.entries());
-    if (typeof window !== "undefined") {
-      localStorage.setItem("name", formData.get("name") as string);
-    }
+    setUser(formData.get("name") as string);
 
     setTimeout(() => {
       setLoading("top-3 lg:top-5 -translate-y-0");
@@ -207,8 +206,7 @@ export default function Register() {
             className={`absolute flex justify-center items-center rounded-full lg:left-56 bg-[url('/dark-grudge.jpg')] bg-center px-5 lg:px-20 glass py-3 font-medium text-white transition-transform duration-500 text-center ${anim}`}
           >
             <small>
-              See you in Yadah 2025,{" "}
-              <b>{localStorage && localStorage.getItem("name")}</b> 😇
+              See you in Yadah 2025, <b>{user}</b> 😇
             </small>
           </div>
 
