@@ -215,9 +215,7 @@ export default function AdminDashboard() {
       const matchesSearch =
         user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         user.email.toLowerCase().includes(searchTerm.toLowerCase());
-      const matchesStatus =
-        statusFilter === "all" || user.status === statusFilter;
-      return matchesSearch && matchesStatus;
+      return matchesSearch;
     });
   };
 
