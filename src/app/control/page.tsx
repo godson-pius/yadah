@@ -1,6 +1,6 @@
 "use client";
 // pages/admin/dashboard.tsx
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { FiUsers } from "react-icons/fi";
 import Link from "next/link";
 import { api } from "../../../convex/_generated/api";
@@ -14,113 +14,10 @@ interface User {
   createdAt: string;
 }
 
-interface EmailData {
-  subject: string;
-  message: string;
-  userIds: string[];
-}
-
-// Mock users data - simulating database records
-// const MOCK_USERS: User[] = [
-//   {
-//     id: "1",
-//     name: "John Smith",
-//     email: "john.smith@example.com",
-//     phone: "+1-555-0123",
-//     createdAt: "2024-09-15T10:30:00Z",
-//     status: "active",
-//   },
-//   {
-//     id: "2",
-//     name: "Sarah Johnson",
-//     email: "sarah.j@company.com",
-//     phone: "+1-555-0456",
-//     createdAt: "2024-09-14T14:22:00Z",
-//     status: "active",
-//   },
-//   {
-//     id: "3",
-//     name: "Michael Brown",
-//     email: "mbrown@startup.io",
-//     createdAt: "2024-09-13T09:15:00Z",
-//     status: "inactive",
-//   },
-//   {
-//     id: "4",
-//     name: "Emily Davis",
-//     email: "emily.davis@tech.com",
-//     phone: "+1-555-0789",
-//     createdAt: "2024-09-12T16:45:00Z",
-//     status: "active",
-//   },
-//   {
-//     id: "5",
-//     name: "David Wilson",
-//     email: "dwilson@design.co",
-//     createdAt: "2024-09-11T11:20:00Z",
-//     status: "active",
-//   },
-//   {
-//     id: "6",
-//     name: "Lisa Anderson",
-//     email: "lisa.a@marketing.com",
-//     phone: "+1-555-0321",
-//     createdAt: "2024-09-10T13:30:00Z",
-//     status: "active",
-//   },
-//   {
-//     id: "7",
-//     name: "Robert Taylor",
-//     email: "rtaylor@finance.org",
-//     createdAt: "2024-09-09T08:45:00Z",
-//     status: "inactive",
-//   },
-//   {
-//     id: "8",
-//     name: "Jennifer Martinez",
-//     email: "j.martinez@consulting.com",
-//     phone: "+1-555-0654",
-//     createdAt: "2024-09-08T15:10:00Z",
-//     status: "active",
-//   },
-//   {
-//     id: "9",
-//     name: "Christopher Lee",
-//     email: "chris.lee@development.io",
-//     createdAt: "2024-09-07T12:25:00Z",
-//     status: "active",
-//   },
-//   {
-//     id: "10",
-//     name: "Amanda White",
-//     email: "a.white@agency.com",
-//     phone: "+1-555-0987",
-//     createdAt: "2024-09-06T10:50:00Z",
-//     status: "active",
-//   },
-//   {
-//     id: "11",
-//     name: "James Clark",
-//     email: "james.clark@enterprise.com",
-//     createdAt: "2024-09-05T14:15:00Z",
-//     status: "active",
-//   },
-//   {
-//     id: "12",
-//     name: "Nicole Rodriguez",
-//     email: "nicole.r@creative.studio",
-//     phone: "+1-555-0147",
-//     createdAt: "2024-09-04T09:30:00Z",
-//     status: "inactive",
-//   },
-// ];
-
 export default function AdminDashboard() {
-  const [users, setUsers] = useState<User[]>([]);
   const [selectedUsers, setSelectedUsers] = useState<string[]>([]);
   const [emailSubject, setEmailSubject] = useState<string>("");
   const [emailMessage, setEmailMessage] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(false);
   const [emailLoading, setEmailLoading] = useState<boolean>(false);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -129,13 +26,12 @@ export default function AdminDashboard() {
   >("all");
   const [emailSuccess, setEmailSuccess] = useState<string>("");
   const usersPerPage = 8;
-  const getUsers = useQuery(api.users.getUsers);
+  const url = "https://yadahconcert.vercel.app";
+  // const url = "http://localhost:3000";
 
-  if (getUsers) {
-    setUsers(getUsers);
-  }
-
-  // const router = useRouter();
+  // Use the query result directly - no need for separate state
+  const users = useQuery(api.users.getUsers) || [];
+  const loading = users === undefined; // Convex returns undefined while loading
 
   const handleSelectUser = (userId: string) => {
     setSelectedUsers((prev) =>
@@ -179,6 +75,10 @@ export default function AdminDashboard() {
       setEmailLoading(true);
 
       // Simulate API call delay
+      // const mailData = {
+      //   email:
+      //   message: emailMessage,
+      // };
       await new Promise((resolve) => setTimeout(resolve, 2000));
 
       // Simulate success
@@ -186,19 +86,33 @@ export default function AdminDashboard() {
         .filter((user) => targetUsers.includes(user._id))
         .map((user) => user.email);
 
-      console.log("📧 Email sent simulation:", {
-        to: targetUserEmails,
-        subject: emailSubject,
-        message: emailMessage,
-        timestamp: new Date().toISOString(),
-      });
+      targetUserEmails.map(async (email) => {
+        const mailData = {
+          subject: emailSubject,
+          email: email,
+          message: emailMessage,
+        };
 
-      setEmailSuccess(
-        `Email sent successfully to ${targetUsers.length} user(s)!`,
-      );
-      setEmailSubject("");
-      setEmailMessage("");
-      setSelectedUsers([]);
+        const sendmail = await fetch(`${url}/api/send-email`, {
+          method: "POST",
+          body: JSON.stringify(mailData),
+        });
+
+        if (sendmail.status === 200) {
+          console.log("📧 Email sent simulation:", {
+            to: email,
+            subject: emailSubject,
+            message: emailMessage,
+            timestamp: new Date().toISOString(),
+          });
+          setEmailSuccess(
+            `Email sent successfully to ${targetUsers.length} user(s)!`,
+          );
+          setEmailSubject("");
+          setEmailMessage("");
+          setSelectedUsers([]);
+        }
+      });
 
       // Clear success message after 3 seconds
       setTimeout(() => setEmailSuccess(""), 3000);
@@ -337,14 +251,6 @@ export default function AdminDashboard() {
               {selectedUsers.length}
             </p>
           </div>
-          {/*<div className="bg-white p-6 rounded-lg shadow-sm">
-            <h3 className="text-lg font-medium text-gray-900">
-              Filtered Results
-            </h3>
-            <p className="text-3xl font-bold text-orange-600">
-              {getFilteredUsers().length}
-            </p>
-          </div>*/}
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
