@@ -77,7 +77,7 @@ export default function Register() {
 
             <!-- CTA -->
             <div style="text-align:center; margin-top:32px;">
-              <a href="[Insert Link Here]"
+              <a href="https://yadahconcert.vercel.app/about-yadah"
                  style="display:inline-block; background:#000000; color:#ffffff; text-decoration:none; font-size:16px; font-weight:600; padding:12px 40px; border-radius:6px;">
                 View Event Details
               </a>
