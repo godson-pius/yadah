@@ -12,6 +12,7 @@ export default function Register() {
   const [loading, setLoading] = useState<string>("-translate-y-full top-0");
   const [user, setUser] = useState<string>("");
   const url = "https://yadahconcert.vercel.app";
+  // const url = "http://localhost:3000";
 
   const handleSubmit = async (formData: FormData) => {
     // const data = Object.fromEntries(formData.entries());
