@@ -14,7 +14,6 @@ export default function Register() {
 
   const handleSubmit = async (formData: FormData) => {
     // const data = Object.fromEntries(formData.entries());
-    setUser(formData.get("name") as string);
 
     setTimeout(() => {
       setLoading("top-3 lg:top-5 -translate-y-0");
@@ -101,6 +100,7 @@ export default function Register() {
 
     const res = await insertUser({ data });
     if (res === null) {
+      setUser(formData.get("name") as string);
       setSubmitting(false);
       setAnim("top-3 -translate-y-0");
       setLoading("-translate-y-full top-0");
@@ -206,7 +206,7 @@ export default function Register() {
             className={`absolute flex justify-center items-center rounded-full lg:left-56 bg-[url('/dark-grudge.jpg')] bg-center px-5 lg:px-20 glass py-3 font-medium text-white transition-transform duration-500 text-center ${anim}`}
           >
             <small>
-              See you in Yadah 2025, <b>{user}</b> 😇
+              See you in Yadah 2025, <b>{user && user}</b> 😇
             </small>
           </div>
 

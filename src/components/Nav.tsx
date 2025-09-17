@@ -2,15 +2,13 @@
 import React from "react";
 import Link from "next/link";
 import { HiMenuAlt3 } from "react-icons/hi";
-import { RiMenuUnfoldLine } from "react-icons/ri";
+import { RiCloseLine, RiMenuUnfoldLine } from "react-icons/ri";
+import { usePathname } from "next/navigation";
 
-interface IProps {
-  page?: string;
-  setPage?: (page: string) => void;
-}
-
-const Navbar = ({ page, setPage }: IProps) => {
+const Navbar = () => {
   const [showMobile, setShowMobile] = React.useState<boolean>(false);
+  const page = usePathname();
+
   return (
     <>
       <div
@@ -30,7 +28,7 @@ const Navbar = ({ page, setPage }: IProps) => {
         >
           <Link
             href={"/"}
-            className={`group relative overflow-hidden pb-1 ${page === "how" ? "border-b-2" : null}`}
+            className={`group relative overflow-hidden pb-1 ${page === "/" ? "border-b-2" : null}`}
           >
             HOME
             <p
@@ -42,7 +40,7 @@ const Navbar = ({ page, setPage }: IProps) => {
 
           <Link
             href={"/about-yadah"}
-            className={`group relative overflow-hidden pb-1 ${page === "how" ? "border-b-2" : null}`}
+            className={`group relative overflow-hidden pb-1 ${page === "/about-yadah" ? "border-b-2" : null}`}
           >
             ABOUT YADAH
             <p
@@ -54,7 +52,7 @@ const Navbar = ({ page, setPage }: IProps) => {
 
           <Link
             href={"/memories"}
-            className={`group relative overflow-hidden pb-1 ${page === "how" ? "border-b-2" : null}`}
+            className={`group relative overflow-hidden pb-1 ${page === "/memories" ? "border-b-2" : null}`}
           >
             YADAH MEMORIES
             <p
@@ -76,10 +74,10 @@ const Navbar = ({ page, setPage }: IProps) => {
             Register
           </Link>
 
-          <RiMenuUnfoldLine
+          <RiCloseLine
             size={25}
             className={
-              "absolute right-10 block lg:hidden cursor-pointer text-red-500 "
+              "absolute right-2 block lg:hidden cursor-pointer text-red-500 "
             }
             onClick={() => setShowMobile(!showMobile)}
           />

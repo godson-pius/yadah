@@ -50,12 +50,12 @@ const Hero = () => {
 
         <div
           className={
-            'flex flex-col w-full justify-end lg:justify-start lg:w-[45%] h-96 lg:h-full text-[#2C3E50] bg-[url("https://images.unsplash.com/photo-1496307653780-42ee777d4833?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHdoaXRlJTIwYWJzdHJhY3QlMjBiYWNrZ3JvdW5kfGVufDB8fDB8fHww")] bg-cover bg-center p-7 pt-96 lg:pt-2 group relative overflow-hidden'
+            'flex flex-col w-full justify-end lg:justify-start lg:w-[45%] h-96 lg:h-full text-[#2C3E50] bg-[url("https://images.unsplash.com/photo-1496307653780-42ee777d4833?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHdoaXRlJTIwYWJzdHJhY3QlMjBiYWNrZ3JvdW5kfGVufDB8fDB8fHww")] bg-cover bg-center p-7 pt-[27rem] lg:pt-2 group relative overflow-hidden'
           }
         >
           <p className={`${animation2}`}>
-            <span className="font-bold text-2xl mb-2">
-              Yadah Mega Concert - Halal
+            <span className="font-bold text-3xl lg:text-6xl mb-2">
+              Yadah Mega Concert 2025: Halal
             </span>{" "}
             <br />
             The Yadah MEGA Concert is more than just an event; it is a divine
@@ -73,7 +73,7 @@ const Hero = () => {
             <Link
               href="/register"
               className={
-                "border-orange-500 pb-1 border-b-[1px] w-max mt-4 font-medium flex items-center gap-1"
+                " bg-orange-200 text-orange-600 px-20 py-2 rounded-full transition duration-500 hover:scale-105 glass w-max mt-4 font-medium flex items-center gap-1"
               }
             >
               Register
