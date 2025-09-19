@@ -33,7 +33,7 @@ export default function Register() {
       heardFrom: formData.get("heardfrom") as string,
       registrationType: formData.get("regType") as string,
       preferredUnit: formData.get("unit") as string,
-      attendedBefore: formData.get("attendedBefore"),
+      attendedBefore: formData.get("attendedBefore") as string,
       createdAt: new Date().toISOString() as string,
     };
 
