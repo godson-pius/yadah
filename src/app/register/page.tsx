@@ -11,8 +11,8 @@ export default function Register() {
   const [submitting, setSubmitting] = useState<boolean>(false);
   const [loading, setLoading] = useState<string>("-translate-y-full top-0");
   const [user, setUser] = useState<string>("");
-  const url = "https://yadahconcert.vercel.app";
-  // const url = "http://localhost:3000";
+  // const url = "https://yadahconcert.vercel.app";
+  const url = "http://localhost:3000";
 
   const handleSubmit = async (formData: FormData) => {
     // const data = Object.fromEntries(formData.entries());
@@ -27,7 +27,13 @@ export default function Register() {
       email: formData.get("email") as string,
       name: formData.get("name") as string,
       phone: formData.get("phone") as string,
+      gender: formData.get("gender") as string,
       church: formData.get("church") as string,
+      attendanceMode: formData.get("mode") as string,
+      heardFrom: formData.get("heardfrom") as string,
+      registrationType: formData.get("regType") as string,
+      preferredUnit: formData.get("unit") as string,
+      attendedBefore: formData.get("attendedBefore"),
       createdAt: new Date().toISOString() as string,
     };
 
@@ -120,70 +126,220 @@ export default function Register() {
     <main className="w-full h-screen">
       {/*<Navbar />*/}
       <section className="w-full flex justify-between">
-        <div className="w-full h-screen lg:w-[60%] flex flex-col px-7 py-20 lg:px-72 lg:py-20 bg-[url('/white4.jpg')] bg-cover bg-center relative">
+        <div className="w-full lg:h-screen lg:w-[60%] flex flex-col px-7 py-20 lg:px-72 lg:py-16 bg-[url('/white4.jpg')] bg-cover bg-center relative">
           <h2 className="text-2xl font-bold">Yadah Mega Concert</h2>
           <p className="text-xs text-gray-500">
             Register your presence via this form.
           </p>
           <form
             action={handleSubmit}
-            className="flex flex-col gap-4 lg:gap-5 mt-6"
+            className="flex flex-col gap-4 lg:gap-6 mt-6"
           >
-            <div className="flex flex-col formgroup">
-              <label htmlFor="name" className="text-sm font-medium">
-                Name
-              </label>
-              <input
-                id="name"
-                type="text"
-                name="name"
-                required
-                placeholder="Enter your name"
-                className="bg-gray-100 border-[1.5px] border-gray-200 text-base rounded-lg placeholder:text-sm px-3 py-2 w-full lg:w-96"
-              />
+            <div className="formp flex flex-col lg:flex-row lg:items-center gap-5 lg:gap-6">
+              <div className="flex flex-col formgroup">
+                <label
+                  htmlFor="name"
+                  className="text-sm font-medium text-slate-700"
+                >
+                  Name
+                </label>
+                <input
+                  id="name"
+                  type="text"
+                  name="name"
+                  required
+                  placeholder="Enter your name"
+                  className="bg-gray-100 border-[1.5px] border-gray-200 text-base rounded-lg placeholder:text-sm px-3 py-2 w-full lg:w-64"
+                />
+              </div>
+
+              <div className="flex flex-col formgroup">
+                <label
+                  htmlFor="gender"
+                  className="text-sm font-medium text-slate-700"
+                >
+                  Gender
+                </label>
+                <select
+                  id="gender"
+                  name="gender"
+                  className="bg-gray-100 border-[1.5px] border-gray-200 text-base rounded-lg placeholder:text-sm px-3 py-2 w-full lg:w-64"
+                  required
+                >
+                  <option value="">Select Gender</option>
+                  <option value="female">Male</option>
+                  <option value="other">Female</option>
+                </select>
+              </div>
             </div>
 
-            <div className="flex flex-col formgroup">
-              <label htmlFor="email" className="text-sm font-medium">
-                Email
-              </label>
-              <input
-                id="email"
-                type="email"
-                name="email"
-                required
-                placeholder="Enter your email"
-                className="bg-gray-100 border-[1.5px] border-gray-200 text-base rounded-lg placeholder:text-sm px-3 py-2 w-full lg:w-96"
-              />
+            <div className="formp flex flex-col lg:flex-row lg:items-center gap-5 lg:gap-6">
+              <div className="flex flex-col formgroup">
+                <label
+                  htmlFor="email"
+                  className="text-sm font-medium text-slate-700"
+                >
+                  Email
+                </label>
+                <input
+                  id="email"
+                  type="email"
+                  name="email"
+                  required
+                  placeholder="Enter your email"
+                  className="bg-gray-100 border-[1.5px] border-gray-200 text-base rounded-lg placeholder:text-sm px-3 py-2 w-full lg:w-64"
+                />
+              </div>
+
+              <div className="flex flex-col formgroup">
+                <label
+                  htmlFor="phone"
+                  className="text-sm font-medium text-slate-700"
+                >
+                  Phone Number (Whatsapp Preferably)
+                </label>
+                <input
+                  id="phone"
+                  type="text"
+                  name="phone"
+                  required
+                  placeholder="Enter your phone number"
+                  className="bg-gray-100 border-[1.5px] border-gray-200 text-base rounded-lg placeholder:text-sm px-3 py-2 w-full lg:w-64"
+                />
+              </div>
             </div>
 
-            <div className="flex flex-col formgroup">
-              <label htmlFor="phone" className="text-sm font-medium">
-                Phone Number (Whatsapp Preferably)
-              </label>
-              <input
-                id="phone"
-                type="text"
-                name="phone"
-                required
-                placeholder="Enter your phone number"
-                className="bg-gray-100 border-[1.5px] border-gray-200 text-base rounded-lg placeholder:text-sm px-3 py-2 w-full lg:w-96"
-              />
+            <div className="formp flex flex-col lg:flex-row lg:items-center gap-5 lg:gap-6">
+              <div className="flex flex-col formgroup">
+                <label
+                  htmlFor="church"
+                  className="text-sm font-medium text-slate-700"
+                >
+                  Church name
+                </label>
+                <input
+                  id="church"
+                  type="text"
+                  name="church"
+                  required
+                  placeholder="Enter your church"
+                  className="bg-gray-100 border-[1.5px] border-gray-200 text-base rounded-lg placeholder:text-sm px-3 py-2 w-full lg:w-64"
+                />
+              </div>
+
+              <div className="flex flex-col formgroup">
+                <label
+                  htmlFor="mode"
+                  className="text-sm font-medium text-slate-700"
+                >
+                  Mode of Attendance
+                </label>
+                <select
+                  id="mode"
+                  name="mode"
+                  className="bg-gray-100 border-[1.5px] border-gray-200 text-base rounded-lg placeholder:text-sm px-3 py-2 w-full lg:w-64"
+                  required
+                >
+                  <option value="">Select Attendance Mode</option>
+                  <option value="virtual">Virtual</option>
+                  <option value="physical">Physical</option>
+                </select>
+              </div>
             </div>
 
-            <div className="flex flex-col formgroup">
-              <label htmlFor="church" className="text-sm font-medium">
-                Church name
-              </label>
-              <input
-                id="church"
-                type="text"
-                name="church"
-                required
-                placeholder="Enter your church"
-                className="bg-gray-100 border-[1.5px] border-gray-200 text-base rounded-lg placeholder:text-sm px-3 py-2 w-full lg:w-96"
-              />
+            <div className="formp flex flex-col lg:flex-row lg:items-center gap-5 lg:gap-6">
+              <div className="flex flex-col formgroup">
+                <label
+                  htmlFor="heardfrom"
+                  className="text-sm font-medium text-slate-700"
+                >
+                  Where did you hear about Yadah
+                </label>
+                <select
+                  id="heardfrom"
+                  name="heardfrom"
+                  className="bg-gray-100 border-[1.5px] border-gray-200 text-base rounded-lg placeholder:text-sm px-3 py-2 w-full lg:w-64"
+                  required
+                >
+                  <option value="">Where did you hear about Yadah</option>
+                  <option value="friend">Friend</option>
+                  <option value="socialmedia">Social Media</option>
+                  <option value="google">Google</option>
+                  <option value="church">Church Fellowship</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+              <div className="flex flex-col formgroup">
+                <label
+                  htmlFor="regType"
+                  className="text-sm font-medium text-slate-700"
+                >
+                  Registration Type
+                </label>
+                <select
+                  id="regType"
+                  name="regType"
+                  className="bg-gray-100 border-[1.5px] border-gray-200 text-base rounded-lg placeholder:text-sm px-3 py-2 w-full lg:w-64"
+                  required
+                >
+                  <option value="">Select Registration Type</option>
+                  <option value="attendee">Attendee</option>
+                  <option value="volunteer">Volunteer</option>
+                </select>
+              </div>
             </div>
+
+            <div className="formp flex flex-col lg:flex-row lg:items-center gap-5 lg:gap-6">
+              <div className="flex flex-col formgroup">
+                <label
+                  htmlFor="unit"
+                  className="text-sm font-medium text-slate-700"
+                >
+                  Select Unit (if Volunteer)
+                </label>
+                <select
+                  id="unit"
+                  name="unit"
+                  className="bg-gray-100 border-[1.5px] border-gray-200 text-base rounded-lg placeholder:text-sm px-3 py-2 w-full lg:w-64"
+                  required
+                >
+                  <option value="">Select Unit</option>
+                  <option value="media">Media</option>
+                  <option value="Content Creation">Content creation</option>
+                  <option value="Ushering">Ushering</option>
+                  <option value="Prayer">Prayer</option>
+                  <option value="Protocol">Protocol</option>
+                  <option value="Venue Management">Venue management</option>
+                  <option value="Logistics and transportation">
+                    Logistics and transportation
+                  </option>
+                  <option value="General Production">General Production</option>
+                  <option value="Security">Security</option>
+                </select>
+              </div>
+
+              <div className="flex flex-col formgroup">
+                <label
+                  htmlFor="attendedBefore"
+                  className="text-sm font-medium text-slate-700"
+                >
+                  Have you attended before?
+                </label>
+                <select
+                  id="attendedBefore"
+                  name="attendedBefore"
+                  className="bg-gray-100 border-[1.5px] border-gray-200 text-base rounded-lg placeholder:text-sm px-3 py-2 w-full lg:w-64"
+                  required
+                >
+                  <option value="">Have you attended before?</option>
+                  <option value="No">No</option>
+                  <option value="Yes">Yes</option>
+                </select>
+              </div>
+            </div>
+
+            {/*Register*/}
             <div className="flex items-center mt-2 gap-3">
               <button
                 type="submit"
