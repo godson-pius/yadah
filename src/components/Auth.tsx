@@ -44,12 +44,14 @@ export default function AdminLogin() {
       credentials.email === ADMIN_CREDENTIALS.email &&
       credentials.password === ADMIN_CREDENTIALS.password
     ) {
-      // Store simple auth token in localStorage
-      localStorage.setItem("adminAuth", "authenticated");
-      localStorage.setItem("adminEmail", credentials.email);
-
       // Redirect to dashboard
-      window.location.href = "/control";
+      if (typeof window !== "undefined") {
+        // Store simple auth token in localStorage
+        localStorage.setItem("adminAuth", "authenticated");
+        localStorage.setItem("adminEmail", credentials.email);
+
+        window.location.href = "/control";
+      }
     } else {
       setError("Invalid email or password");
     }
