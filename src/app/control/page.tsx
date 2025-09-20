@@ -36,7 +36,7 @@ export default function AdminDashboard() {
   >("all");
   const [emailSuccess, setEmailSuccess] = useState<string>("");
   const [adminAuth] = useState<string | null>(
-    localStorage.getItem("adminAuth"),
+    typeof window !== "undefined" ? localStorage.getItem("adminAuth") : null,
   );
   const usersPerPage = 8;
   const url = "https://yadahconcert.vercel.app";
@@ -71,8 +71,10 @@ export default function AdminDashboard() {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("adminAuth");
-    window.location.href = "/control";
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("adminAuth");
+      window.location.href = "/control";
+    }
   };
 
   const simulateEmailSend = async (
