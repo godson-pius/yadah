@@ -95,6 +95,7 @@ export default function Register() {
             <div style="margin-top:40px; text-align:center; color:#9ca3af; font-size:14px;">
               <p style="margin:0;">
                 Follow us on socials:
+                <a href="https://youtube.com/@vicpraiz?si=_4_mbqpU9w51Qvyj" style="color:#0284c7; text-decoration:none; margin-left:6px;">YouTube</a> ·
                 <a href="https://web.facebook.com/profile.php?id=61580494344252" style="color:#0284c7; text-decoration:none; margin-left:6px;">Facebook</a> ·
                 <a href="https://www.instagram.com/yadahmegaconcert?igsh=ZTVwZHhwbWt6aWUz&utm_source=qr" style="color:#0284c7; text-decoration:none; margin-left:6px;">Instagram</a> ·
                 <a href="https://www.tiktok.com/@inspired.music.na?_t=ZG-8znskMbnsqf&_r=1" style="color:#0284c7; text-decoration:none; margin-left:6px;">TikTok</a>
