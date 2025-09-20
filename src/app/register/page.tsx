@@ -11,6 +11,7 @@ export default function Register() {
   const [submitting, setSubmitting] = useState<boolean>(false);
   const [loading, setLoading] = useState<string>("-translate-y-full top-0");
   const [user, setUser] = useState<string>("");
+
   const url = "https://yadahconcert.vercel.app";
   // const url = "http://localhost:3000";
 
@@ -122,11 +123,12 @@ export default function Register() {
       alert("Failed to register. Please try again");
     }
   };
+
   return (
     <main className="w-full h-screen">
       {/*<Navbar />*/}
       <section className="w-full flex justify-between">
-        <div className="w-full lg:h-screen lg:w-[60%] flex flex-col px-7 py-20 lg:px-60 lg:py-16 bg-[url('/white4.jpg')] bg-cover bg-center relative">
+        <div className="w-full lg:h-screen lg:w-[60%] flex flex-col px-7 py-20 lg:px-60 lg:py-16 bg-[url('/white3.jpg')] lg:bg-[url('/white4.jpg')] bg-cover bg-center relative">
           <div className="flex items-center justify-between w-full">
             <div>
               <h2 className="text-2xl font-bold">Yadah Mega Concert</h2>
@@ -154,7 +156,7 @@ export default function Register() {
                   name="name"
                   required
                   placeholder="Enter your name"
-                  className="bg-gray-100 border-[1.5px] border-gray-200 text-base rounded-lg placeholder:text-sm px-3 py-2 w-full lg:w-64"
+                  className="bg-gray-100 border-[1.5px] border-gray-200 text-base lg:text-sm rounded-lg placeholder:text-sm px-3 py-2 w-full lg:w-64"
                 />
               </div>
 
@@ -168,7 +170,7 @@ export default function Register() {
                 <select
                   id="gender"
                   name="gender"
-                  className="bg-gray-100 border-[1.5px] border-gray-200 text-base rounded-lg placeholder:text-sm px-3 py-2 w-full lg:w-64"
+                  className="bg-gray-100 border-[1.5px] border-gray-200 text-base lg:text-sm rounded-lg placeholder:text-sm px-3 py-2 w-full lg:w-64"
                   required
                 >
                   <option value="">Select Gender</option>
@@ -192,7 +194,7 @@ export default function Register() {
                   name="email"
                   required
                   placeholder="Enter your email"
-                  className="bg-gray-100 border-[1.5px] border-gray-200 text-base rounded-lg placeholder:text-sm px-3 py-2 w-full lg:w-64"
+                  className="bg-gray-100 border-[1.5px] border-gray-200 text-base lg:text-sm rounded-lg placeholder:text-sm px-3 py-2 w-full lg:w-64"
                 />
               </div>
 
@@ -209,7 +211,7 @@ export default function Register() {
                   name="phone"
                   required
                   placeholder="Enter your phone number"
-                  className="bg-gray-100 border-[1.5px] border-gray-200 text-base rounded-lg placeholder:text-sm px-3 py-2 w-full lg:w-64"
+                  className="bg-gray-100 border-[1.5px] border-gray-200 text-base lg:text-sm rounded-lg placeholder:text-sm px-3 py-2 w-full lg:w-64"
                 />
               </div>
             </div>
@@ -228,7 +230,7 @@ export default function Register() {
                   name="church"
                   required
                   placeholder="Enter your church"
-                  className="bg-gray-100 border-[1.5px] border-gray-200 text-base rounded-lg placeholder:text-sm px-3 py-2 w-full lg:w-64"
+                  className="bg-gray-100 border-[1.5px] border-gray-200 text-base lg:text-sm rounded-lg placeholder:text-sm px-3 py-2 w-full lg:w-64"
                 />
               </div>
 
@@ -242,7 +244,7 @@ export default function Register() {
                 <select
                   id="mode"
                   name="mode"
-                  className="bg-gray-100 border-[1.5px] border-gray-200 text-base rounded-lg placeholder:text-sm px-3 py-2 w-full lg:w-64"
+                  className="bg-gray-100 border-[1.5px] border-gray-200 text-base lg:text-sm rounded-lg placeholder:text-sm px-3 py-2 w-full lg:w-64"
                   required
                 >
                   <option value="">Select Attendance Mode</option>
@@ -263,7 +265,7 @@ export default function Register() {
                 <select
                   id="heardfrom"
                   name="heardfrom"
-                  className="bg-gray-100 border-[1.5px] border-gray-200 text-base rounded-lg placeholder:text-sm px-3 py-2 w-full lg:w-64"
+                  className="bg-gray-100 border-[1.5px] border-gray-200 text-base lg:text-sm rounded-lg placeholder:text-sm px-3 py-2 w-full lg:w-64"
                   required
                 >
                   <option value="">Where did you hear about Yadah</option>
@@ -285,7 +287,7 @@ export default function Register() {
                 <select
                   id="regType"
                   name="regType"
-                  className="bg-gray-100 border-[1.5px] border-gray-200 text-base rounded-lg placeholder:text-sm px-3 py-2 w-full lg:w-64"
+                  className="bg-gray-100 border-[1.5px] border-gray-200 text-base lg:text-sm rounded-lg placeholder:text-sm px-3 py-2 w-full lg:w-64"
                   required
                 >
                   <option value="">Select Registration Type</option>
@@ -306,11 +308,11 @@ export default function Register() {
                 <select
                   id="unit"
                   name="unit"
-                  className="bg-gray-100 border-[1.5px] border-gray-200 text-base rounded-lg placeholder:text-sm px-3 py-2 w-full lg:w-64"
+                  className="bg-gray-100 border-[1.5px] border-gray-200 text-base lg:text-sm rounded-lg placeholder:text-sm px-3 py-2 w-full lg:w-64"
                   required
                 >
                   <option value="">Select Unit</option>
-                  <option value="media">Media</option>
+                  <option value="Media">Media</option>
                   <option value="Content Creation">Content creation</option>
                   <option value="Ushering">Ushering</option>
                   <option value="Prayer">Prayer</option>
@@ -334,7 +336,7 @@ export default function Register() {
                 <select
                   id="attendedBefore"
                   name="attendedBefore"
-                  className="bg-gray-100 border-[1.5px] border-gray-200 text-base rounded-lg placeholder:text-sm px-3 py-2 w-full lg:w-64"
+                  className="bg-gray-100 border-[1.5px] border-gray-200 text-base lg:text-sm rounded-lg placeholder:text-sm px-3 py-2 w-full lg:w-64"
                   required
                 >
                   <option value="">Have you attended before?</option>

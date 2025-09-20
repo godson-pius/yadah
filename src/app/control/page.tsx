@@ -5,6 +5,7 @@ import { FiUsers } from "react-icons/fi";
 import Link from "next/link";
 import { api } from "../../../convex/_generated/api";
 import { useQuery } from "convex/react";
+import AdminLogin from "@/components/Auth";
 
 interface User {
   _id: string;
@@ -22,9 +23,21 @@ export default function AdminDashboard() {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [statusFilter, setStatusFilter] = useState<
-    "all" | "active" | "inactive"
+    | "all"
+    | "Media"
+    | "Content Creation"
+    | "Ushering"
+    | "Prayer"
+    | "Protocol"
+    | "Venue Management"
+    | "Logistics and transportation"
+    | "General Production"
+    | "Security"
   >("all");
   const [emailSuccess, setEmailSuccess] = useState<string>("");
+  const [adminAuth] = useState<string | null>(
+    localStorage.getItem("adminAuth"),
+  );
   const usersPerPage = 8;
   const url = "https://yadahconcert.vercel.app";
   // const url = "http://localhost:3000";
@@ -57,6 +70,11 @@ export default function AdminDashboard() {
     }
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("adminAuth");
+    window.location.href = "/control";
+  };
+
   const simulateEmailSend = async (
     userIds: string[] = selectedUsers,
   ): Promise<void> => {
@@ -74,11 +92,6 @@ export default function AdminDashboard() {
     try {
       setEmailLoading(true);
 
-      // Simulate API call delay
-      // const mailData = {
-      //   email:
-      //   message: emailMessage,
-      // };
       await new Promise((resolve) => setTimeout(resolve, 2000));
 
       // Simulate success
@@ -129,7 +142,9 @@ export default function AdminDashboard() {
       const matchesSearch =
         user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         user.email.toLowerCase().includes(searchTerm.toLowerCase());
-      return matchesSearch;
+      const matchesStatus =
+        statusFilter === "all" || user.preferredUnit === statusFilter;
+      return matchesSearch && matchesStatus;
     });
   };
 
@@ -179,6 +194,11 @@ export default function AdminDashboard() {
     );
   }
 
+  // Check auth
+  if (!adminAuth || adminAuth !== "authenticated") {
+    return <AdminLogin />;
+  }
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
@@ -192,14 +212,20 @@ export default function AdminDashboard() {
               <p className="text-gray-600">Manage users and send emails</p>
             </div>
             <div className="flex items-center space-x-1">
-              <div className="px-3 py-1 bg-orange-100 text-orange-800 text-sm rounded-full animate-pulse">
+              <div className="px-3 py-1 bg-orange-100 text-orange-800 text-sm rounded-full animate-pulse hidden lg:block">
                 Yadah Mode
               </div>
+              <button
+                onClick={handleLogout}
+                className="px-3 py-2 text-sm font-medium text-red-600 hover:text-red-800 hover:bg-red-50 rounded-md transition-colors"
+              >
+                Logout
+              </button>
               <Link
                 href={"/"}
-                className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900"
+                className="px-2 py-2 text-sm font-medium text-gray-600 hover:text-gray-900"
               >
-                Back to Site
+                Website
               </Link>
             </div>
           </div>
@@ -275,20 +301,41 @@ export default function AdminDashboard() {
                     placeholder="Search users by name or email..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-base"
                   />
                   <select
                     value={statusFilter}
                     onChange={(e) =>
                       setStatusFilter(
-                        e.target.value as "all" | "active" | "inactive",
+                        e.target.value as
+                          | "all"
+                          | "Media"
+                          | "Content Creation"
+                          | "Ushering"
+                          | "Prayer"
+                          | "Protocol"
+                          | "Venue Management"
+                          | "Logistics and transportation"
+                          | "General Production"
+                          | "Security",
                       )
                     }
                     className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   >
-                    <option value="all">All Status</option>
-                    <option value="active">Active</option>
-                    <option value="inactive">Inactive</option>
+                    <option value="all">All Unit</option>
+                    <option value="Media">Media</option>
+                    <option value="Content Creation">Content creation</option>
+                    <option value="Ushering">Ushering</option>
+                    <option value="Prayer">Prayer</option>
+                    <option value="Protocol">Protocol</option>
+                    <option value="Venue Management">Venue management</option>
+                    <option value="Logistics and transportation">
+                      Logistics and transportation
+                    </option>
+                    <option value="General Production">
+                      General Production
+                    </option>
+                    <option value="Security">Security</option>
                   </select>
                 </div>
 
@@ -444,7 +491,7 @@ export default function AdminDashboard() {
                     value={emailSubject}
                     onChange={(e) => setEmailSubject(e.target.value)}
                     placeholder="Enter email subject"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-gray-300 text-base rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
 
@@ -457,7 +504,7 @@ export default function AdminDashboard() {
                     onChange={(e) => setEmailMessage(e.target.value)}
                     placeholder="Enter your message here..."
                     rows={6}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-base resize-none"
                   />
                 </div>
 
