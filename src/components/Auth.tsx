@@ -110,7 +110,8 @@ export default function AdminLogin() {
                 <div className="mt-2 text-sm text-blue-700">
                   <p>
                     Enter right credentials to access the admin dashboard. If
-                    you don't have an account, please contact the administrator.
+                    you don&apos;t have an account, please contact the
+                    administrator.
                   </p>
                 </div>
               </div>
