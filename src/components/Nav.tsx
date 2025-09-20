@@ -1,8 +1,9 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import React from "react";
 import Link from "next/link";
 import { HiMenuAlt3 } from "react-icons/hi";
-import { RiCloseLine, RiMenuUnfoldLine } from "react-icons/ri";
+import { RiCloseLine } from "react-icons/ri";
 import { usePathname } from "next/navigation";
 
 const Navbar = () => {
@@ -18,10 +19,10 @@ const Navbar = () => {
       >
         {/*<Image src={logo} alt={'logo'} width={140} height={140} />*/}
         <Link href={"/"} className={`${showMobile ? "hidden" : "block"}`}>
-          <span className="font-bold text-lg italic">
+          {/*<span className="font-bold text-lg italic">
             <span className="text-orange-600">Yadah</span>Concert.
-          </span>
-          {/*<img src={"/next.svg"} alt="Logo" width={100} />*/}
+          </span>*/}
+          <img src={"/logo.png"} alt="Logo" width={40} />
         </Link>
         <nav
           className={`gap-5 text-xs font-medium items-center ${showMobile ? "flex" : "hidden lg:flex"}`}

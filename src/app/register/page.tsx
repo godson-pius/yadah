@@ -126,11 +126,16 @@ export default function Register() {
     <main className="w-full h-screen">
       {/*<Navbar />*/}
       <section className="w-full flex justify-between">
-        <div className="w-full lg:h-screen lg:w-[60%] flex flex-col px-7 py-20 lg:px-72 lg:py-16 bg-[url('/white4.jpg')] bg-cover bg-center relative">
-          <h2 className="text-2xl font-bold">Yadah Mega Concert</h2>
-          <p className="text-xs text-gray-500">
-            Register your presence via this form.
-          </p>
+        <div className="w-full lg:h-screen lg:w-[60%] flex flex-col px-7 py-20 lg:px-60 lg:py-16 bg-[url('/white4.jpg')] bg-cover bg-center relative">
+          <div className="flex items-center justify-between w-full">
+            <div>
+              <h2 className="text-2xl font-bold">Yadah Mega Concert</h2>
+              <p className="text-xs text-gray-500">
+                Register your presence via this form.
+              </p>
+            </div>
+            <img src={"/logo.png"} alt="Logo" className="lg:-mr-32 w-10" />
+          </div>
           <form
             action={handleSubmit}
             className="flex flex-col gap-4 lg:gap-6 mt-6"
