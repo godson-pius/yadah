@@ -274,6 +274,7 @@ export default function Register() {
                   <option value="socialmedia">Social Media</option>
                   <option value="google">Google</option>
                   <option value="church">Church Fellowship</option>
+                  <option value="banner">Banner Ads</option>
                   <option value="other">Other</option>
                 </select>
               </div>
