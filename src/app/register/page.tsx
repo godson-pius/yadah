@@ -319,6 +319,7 @@ export default function Register() {
                   <option value="Ushering">Ushering</option>
                   <option value="Prayer">Prayer</option>
                   <option value="Protocol">Protocol</option>
+                  <option value="Welfare">Welfare</option>
                   <option value="Venue Management">Venue management</option>
                   <option value="Logistics and transportation">
                     Logistics and transportation
