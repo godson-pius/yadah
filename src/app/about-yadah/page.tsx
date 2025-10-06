@@ -36,7 +36,7 @@ export default function AboutYadah() {
             Register for Yadah 2025
           </Link>
         </div>
-        <div className="w-full h-[600px] my-7 rounded-xl bg-[url('/banner.jpeg')] bg-cover bg-center"></div>
+        <div className="w-full h-[1000px] my-7 rounded-xl bg-[url('/banner.jpeg')] bg-cover bg-center"></div>
       </div>
     </>
   );

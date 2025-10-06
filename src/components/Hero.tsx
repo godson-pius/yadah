@@ -45,7 +45,7 @@ const Hero = () => {
         ></div>*/}
 
         <div
-          className={`h-96 lg:py-0 lg:h-full bg-[url("/side-banner.jpeg")] bg-cover ${animation3}`}
+          className={`h-96 lg:py-0 lg:h-full bg-[url("/side-banner.jpeg")] bg-cover bg-center ${animation3}`}
         ></div>
 
         <div
