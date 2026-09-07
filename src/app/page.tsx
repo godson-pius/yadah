@@ -1,7 +1,4 @@
-import Link from "next/link";
-import { BsArrowUpRight } from "react-icons/bs";
 import Hero from "@/components/Hero";
-import Footer from "@/components/Footer";
 
 export default function Home() {
   return (

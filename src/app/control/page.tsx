@@ -169,21 +169,21 @@ export default function AdminDashboard() {
     });
   };
 
-  const getStatusBadge = (status: string) => {
-    const baseClasses = "px-2 py-1 text-xs font-medium rounded-full";
-    const statusClasses = {
-      active: "bg-green-100 text-green-800",
-      inactive: "bg-gray-100 text-gray-800",
-    };
+  // const getStatusBadge = (status: string) => {
+  //   const baseClasses = "px-2 py-1 text-xs font-medium rounded-full";
+  //   const statusClasses = {
+  //     active: "bg-green-100 text-green-800",
+  //     inactive: "bg-gray-100 text-gray-800",
+  //   };
 
-    return (
-      <span
-        className={`${baseClasses} ${statusClasses[status as keyof typeof statusClasses]}`}
-      >
-        {status}
-      </span>
-    );
-  };
+  //   return (
+  //     <span
+  //       className={`${baseClasses} ${statusClasses[status as keyof typeof statusClasses]}`}
+  //     >
+  //       {status}
+  //     </span>
+  //   );
+  // };
 
   if (loading) {
     return (
@@ -310,16 +310,16 @@ export default function AdminDashboard() {
                     onChange={(e) =>
                       setStatusFilter(
                         e.target.value as
-                          | "all"
-                          | "Media"
-                          | "Content Creation"
-                          | "Ushering"
-                          | "Prayer"
-                          | "Protocol"
-                          | "Venue Management"
-                          | "Logistics and transportation"
-                          | "General Production"
-                          | "Security",
+                        | "all"
+                        | "Media"
+                        | "Content Creation"
+                        | "Ushering"
+                        | "Prayer"
+                        | "Protocol"
+                        | "Venue Management"
+                        | "Logistics and transportation"
+                        | "General Production"
+                        | "Security",
                       )
                     }
                     className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
