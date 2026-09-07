@@ -1,91 +1,31 @@
-"use client";
-
-import React from "react";
 import Link from "next/link";
-import { BsChevronDoubleRight } from "react-icons/bs";
+import Image from "next/image";
+import { BsArrowUpRight } from "react-icons/bs";
 import Navbar from "./Nav";
 
-const Hero = () => {
-  const [animation, setAnimation] = React.useState(
-    "absolute left-0 bottom-7 -translate-x-full",
-  );
-  const [animation2, setAnimation2] = React.useState(
-    "absolute left-0 bottom-7 translate-x-full",
-  );
-  const [animation3, setAnimation3] = React.useState(
-    "h-56 py-20 lg:py-0 lg:w-96 lg:h-full",
-  );
-
-  setInterval(() => {
-    setAnimation3(
-      "h-[100rem] py-32 lg:py-0 lg:h-full lg:w-full rounded-b-xl duration-1000",
-    );
-  }, 150);
-
-  setInterval(() => {
-    setAnimation("translate-x-0 duration-700 transform");
-  }, 1000);
-
-  setInterval(() => {
-    setAnimation2("translate-x-0 duration-700 transform");
-  }, 1700);
-
+export default function Hero() {
   return (
-    <div
-      className={
-        'w-full flex flex-col bg-[url("/bg.jpg")] bg-cover bg-center h-screen'
-      }
-    >
+    <div className="site-shell">
       <Navbar />
-      <section className={"w-full h-full flex flex-col lg:flex-row"}>
-        {/*<div
-          className={
-            'flex flex-col w-full lg:w-[45%] h-96 lg:h-full text-white bg-[url("/banner.jpeg")] bg-cover lg:bg-center justify-end p-7 pt-72 lg:pt-7 group relative overflow-hidden items-end'
-          }
-        ></div>*/}
-
-        <div
-          className={`h-96 lg:py-0 lg:h-full bg-[url("/side-banner.jpeg")] bg-cover bg-center ${animation3}`}
-        ></div>
-
-        <div
-          className={
-            'flex flex-col w-full justify-end lg:justify-start lg:w-[45%] h-96 lg:h-full text-[#2C3E50] bg-[url("https://images.unsplash.com/photo-1496307653780-42ee777d4833?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHdoaXRlJTIwYWJzdHJhY3QlMjBiYWNrZ3JvdW5kfGVufDB8fDB8fHww")] bg-cover bg-center p-7 pt-[27rem] lg:pt-2 group relative overflow-hidden'
-          }
-        >
-          <p className={`${animation2}`}>
-            <span className="font-bold text-3xl lg:text-6xl mb-2">
-              Yadah Mega Concert 2025: Halal
-            </span>{" "}
-            <br />
-            The Yadah MEGA Concert is more than just an event; it is a divine
-            gathering, a spiritual encounter where hearts unite to glorify God,
-            burdens are lifted, and joy overflows. With the theme “Halal”, this
-            night will be a holy expression of worship, thanksgiving, and
-            surrender to the Lord. Come expectant. Come ready. Come with a heart
-            of worship! <br />
-            <b>
-              <i>
-                🗓️ November 14th, 2025 <br /> ⏰ 8PM <br /> 📍 Vee-I-Pee Event
-                Centre, New Haven <br />
-              </i>{" "}
-            </b>
-            <Link
-              href="/register"
-              className={
-                " bg-orange-200 text-orange-600 px-20 py-2 rounded-full transition duration-500 hover:scale-105 glass w-max mt-4 font-medium flex items-center gap-1"
-              }
-            >
-              Register
-              <BsChevronDoubleRight size={14} />
-            </Link>
-          </p>
+      <section className="hero">
+        <div className="hero-grid">
+          <div className="hero-copy">
+            <p className="eyebrow">A night of pure praise / Enugu</p>
+            <h1 className="hero-title">Come ready. <span>Come alive.</span></h1>
+            <p className="hero-description">Yadah Mega Concert is a divine gathering where worship rises, burdens lift, and joy overflows. One night. One sound. Every heart turned toward God.</p>
+            <div className="hero-actions">
+              <Link href="/register" className="button-primary">Reserve your place <BsArrowUpRight /></Link>
+              <Link href="/about-yadah" className="button-secondary">Explore Yadah</Link>
+            </div>
+          </div>
+          <div className="hero-poster-wrap">
+            <Image src="/yadahf.png" alt="Yadah Mega Concert 2025 poster" className="hero-poster" width={1024} height={1280} priority />
+            <div className="hero-stamp">The<br /> Glory of<br />God</div>
+          </div>
         </div>
+        <div className="hero-meta mt-10"><span>20 / 11 / 26</span><span>Vee-I-Pee Event Centre, New Haven</span><span>8 PM till dawn</span></div>
       </section>
-
-      {/*<section className={'bg-[url("/hero.webp")] bg-cover shadow-xl border-4 border-white bg-center relative w-full h-52 rounded-t-full'}></section>*/}
+      {/* <div className="ticker"><div className="ticker-track"><span>Yadah Mega Concert 2025</span><span>Theme: Halal</span><span>Come expectant</span><span>Yadah Mega Concert 2025</span><span>Theme: Halal</span></div></div> */}
     </div>
   );
-};
-
-export default Hero;
+}

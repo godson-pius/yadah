@@ -2,7 +2,7 @@ import nodemailer from "nodemailer";
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resend = new Resend("re_6CgQoLDp_7A5VZCfm4bmGYmJ8Z5swK4eA");
+const resend = new Resend(process.env.RESEND_API_KEY || "");
 
 export async function POST(req: Request) {
   const body = await req.json();
@@ -48,6 +48,7 @@ export async function POST(req: Request) {
     //   { status: 200 },
     // );
   } catch (e) {
+    console.log("Error sending email:", e);
     return NextResponse.json({ error: e }, { status: 500 });
   }
 }
