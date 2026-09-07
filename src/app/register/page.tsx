@@ -3,7 +3,7 @@
 import { useMutation } from "convex/react";
 import Link from "next/link";
 import { api } from "../../../convex/_generated/api";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FiLoader } from "react-icons/fi";
 import Navbar from "@/components/Nav";
 import Footer from "@/components/Footer";
@@ -11,13 +11,24 @@ import Footer from "@/components/Footer";
 export default function Register() {
   const insertUser = useMutation(api.users.insertUser);
   const [submitting, setSubmitting] = useState(false);
-  const [user, setUser] = useState("");
-  const [error, setError] = useState("");
+  const [modal, setModal] = useState<"success" | "error" | null>(null);
+  const [registeredName, setRegisteredName] = useState("");
   const url = "https://yadahconcert.vercel.app";
+
+  useEffect(() => {
+    if (!modal) return;
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setModal(null);
+    };
+
+    document.addEventListener("keydown", closeOnEscape);
+    return () => document.removeEventListener("keydown", closeOnEscape);
+  }, [modal]);
 
   const handleSubmit = async (formData: FormData) => {
     setSubmitting(true);
-    setError("");
+    setModal(null);
     const data = {
       email: formData.get("email") as string,
       name: formData.get("name") as string,
@@ -40,16 +51,17 @@ export default function Register() {
     try {
       const res = await insertUser({ data });
       if (res !== null) throw new Error("Registration failed");
-      setUser(name);
+      setRegisteredName(name);
+      setModal("success");
       await fetch(`${url}/api/send-email`, { method: "POST", body: JSON.stringify(mailData) });
     } catch {
-      setError("We could not complete your registration. Please try again.");
+      setModal("error");
     } finally {
       setSubmitting(false);
     }
   };
 
-  return <main className="register-page"><Navbar /><div className="register-layout"><div className="register-panel"><div className={`register-message ${user ? "visible" : ""}`}>See you in Yadah 2025, <b>{user}</b> 😇</div><p className="eyebrow">Your place in the room</p><h1>Register for a night of pure praise.</h1><p>Fill in your details and come ready for an encounter. Physical and virtual attendance are welcome.</p>{error && <p style={{ color: "var(--orange)" }}>{error}</p>}<form action={handleSubmit} className="register-form">
+  return <main className="register-page"><Navbar /><div className="register-layout"><div className="register-panel"><p className="eyebrow">Your place in the room</p><h1>Register for a night of pure praise.</h1><p>Fill in your details and come ready for an encounter. Physical and virtual attendance are welcome.</p><form action={handleSubmit} className="register-form">
     <div className="formgroup"><label htmlFor="name">Name</label><input id="name" type="text" name="name" required placeholder="Your full name" /></div>
     <div className="formgroup"><label htmlFor="gender">Gender</label><select id="gender" name="gender" required><option value="">Select gender</option><option value="male">Male</option><option value="female">Female</option><option value="other">Other</option></select></div>
     <div className="formgroup"><label htmlFor="email">Email</label><input id="email" type="email" name="email" required placeholder="you@example.com" /></div>
@@ -61,5 +73,5 @@ export default function Register() {
     <div className="formgroup"><label htmlFor="unit">Select unit (if volunteer)</label><select id="unit" name="unit" required><option value="">Select unit</option><option value="Media">Media</option><option value="Content Creation">Content creation</option><option value="Ushering">Ushering</option><option value="Prayer">Prayer</option><option value="Protocol">Protocol</option><option value="Welfare">Welfare</option><option value="Venue Management">Venue management</option><option value="Logistics and transportation">Logistics and transportation</option><option value="General Production">General Production</option><option value="Security">Security</option></select></div>
     <div className="formgroup"><label htmlFor="attendedBefore">Have you attended before?</label><select id="attendedBefore" name="attendedBefore" required><option value="">Select one</option><option value="No">No</option><option value="Yes">Yes</option></select></div>
     <div className="register-wide" style={{ display: "flex", alignItems: "center", gap: ".8rem", marginTop: ".75rem" }}><button type="submit" className="button-primary" disabled={submitting}>{submitting ? <><FiLoader className="animate-spin" /> Registering…</> : <>Register now ↗</>}</button><Link href="/" className="button-secondary">Return home</Link></div>
-  </form></div><div className="register-art" /></div><Footer /></main>;
+  </form></div><div className="register-art" /></div><Footer />{modal && <div className="registration-modal-backdrop" role="presentation" onClick={() => setModal(null)}><section className={`registration-modal registration-modal-${modal}`} role="dialog" aria-modal="true" aria-labelledby="registration-modal-title" onClick={(event) => event.stopPropagation()}><button type="button" className="registration-modal-close" aria-label="Close confirmation" onClick={() => setModal(null)}>×</button><div className="registration-modal-icon" aria-hidden="true">{modal === "success" ? "✓" : "!"}</div><p className="eyebrow">{modal === "success" ? "Registration complete" : "Registration not completed"}</p><h2 id="registration-modal-title">{modal === "success" ? `See you in Yadah, ${registeredName}.` : "We could not complete your registration."}</h2><p>{modal === "success" ? "Your place is confirmed. Check your inbox for the details and come ready for an encounter." : "Something went wrong while saving your details. Please close this message and try again."}</p><button type="button" className="button-primary registration-modal-action" onClick={() => setModal(null)}>{modal === "success" ? "Continue" : "Try again"}</button></section></div>}</main>;
 }
