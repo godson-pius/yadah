@@ -49,11 +49,18 @@ export default function Register() {
     };
 
     try {
-      const res = await insertUser({ data });
-      if (res !== null) throw new Error("Registration failed");
+      await insertUser({ data });
       setRegisteredName(name);
       setModal("success");
-      await fetch(`${url}/api/send-email`, { method: "POST", body: JSON.stringify(mailData) });
+
+      try {
+        await fetch(`${url}/api/send-email`, {
+          method: "POST",
+          body: JSON.stringify(mailData),
+        });
+      } catch {
+        // Registration is complete even if the confirmation email cannot be sent.
+      }
     } catch {
       setModal("error");
     } finally {
